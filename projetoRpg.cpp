@@ -161,8 +161,7 @@ void atacarInimigo(Inimigo &inimigo, Player &player)
 
 void atacarPlayer(Inimigo &inimigo, Player &player)
 {
-    int danoInimigo;
-    danoInimigo = inimigo.atacar(player);
+    int danoInimigo = inimigo.atacar(player);
 }
 
 void conjuraMagia(Player &player, Inimigo &inimigo)
@@ -276,12 +275,13 @@ int main()
     player.adicionarItem("Pocao de mana");
 
     int escolha;
-    
 
     do
     {
+        
         if (inimigo.vida < 1)
         {
+            cout << "Inimigo derrotado!!" << endl;
             inimigoAleatorio(player, inimigo);
             player.xp += 50;
         }
@@ -291,7 +291,7 @@ int main()
             player.xp = 0;
         }
 
-        // system("cls; clear");
+        
         cout << "Vida do inimigo: " << inimigo.vida << endl;
         cout << "Defesa do inimigo: " << inimigo.defesa << endl
              << endl;
