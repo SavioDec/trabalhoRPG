@@ -14,8 +14,8 @@ public:
     int defesa = 5;
     int magia = 15;
     int manaMaxima = 50;
-    int xp = 0;
     int mana = manaMaxima;
+    int xp = 0;
     array<string, 5> mochila;
 
     void sobeNivel()
@@ -124,6 +124,7 @@ public:
     {
         unsigned seed = time(0);
         srand(seed);
+        
         int danoInimigo = (rand() % 20) - player.defesa; // Dano aleatório do inimigo
         if (danoInimigo < 5)
             danoInimigo = 5; // O dano não pode ser negativo
@@ -137,6 +138,7 @@ void inimigoAleatorio(Player &player, Inimigo &inimigo)
 {
     unsigned seed = time(0);
     srand(seed);
+    
     inimigo.vida = (rand() % 50) + 50; // Reiniciar a vida do inimigo
     if (player.ataque < inimigo.defesa)
     {
@@ -152,9 +154,22 @@ void atacarInimigo(Inimigo &inimigo, Player &player)
 {
     unsigned seed = time(0);
     srand(seed);
+    int dado = rand() % 20;
     int dano = player.ataque - inimigo.defesa;
     if (dano < 0) dano = 0; // O dano não pode ser negativo
-       
+    if(dado > 18){
+        cout << "dano critico!! causado: "<< dano << endl;
+        dano = (player.ataque + 10) - inimigo.defesa;
+    }else if(dado > 10){
+        cout << "dano causado: "<< dano << endl;
+        dano = (player.ataque + 5) - inimigo.defesa;
+    }else if(dado > 5){
+        cout << "dano causado: "<< dano << endl;
+        dano;
+    }else{
+        cout << "inimigo desviou!!" << endl;
+        dano = 0;
+    }
 
     inimigo.vida -= dano;
 }
