@@ -158,6 +158,7 @@ void conjuraMagia(Player &player, Inimigo &inimigo, int &mana){
             inimigo.vida -= dano;
         }else if(dado < 3){
             cout << "bola de fogo falhou!" << endl;
+            mana -= 5;
         }else if(dado > 2){
             int dano = player.magia;
             if (dano < 0) dano = 0; // O dano não pode ser negativo
