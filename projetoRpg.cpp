@@ -13,16 +13,18 @@ public:
     int vida = 100;
     int ataque = 10;
     int defesa = 5;
-    int magia = 0;
+    int magia = 15;
+    int manaMaxima = 50;
     int xp = 0;
     string mochila[5];
     
-    void sobeNivel() {
+    int sobeNivel() {
         int escolha;
         cout << "Subiu de nível!!" << endl << "Qual atributo deseja upar?" << endl;
         cout << "1- Ataque - " << ataque << endl;
         cout << "2- Defesa - " << defesa << endl;
-        cout << "3- Magia(cura) - " << magia << endl;
+        cout << "3- Magia - " << magia << endl;
+        cout << "4- mana - " << manaMaxima << endl;
         cin >> escolha;
         switch (escolha) {
             case 1:
@@ -34,21 +36,25 @@ public:
             case 3:
                 magia += 1;
                 break;
+            case 4:
+                manaMaxima += 5;
+                break;
             default:
                 break;
         }
     }
+    
 
-    void magiaCura() {
-        if (vida < 100) {
-            vida += 15 + magia;
-            if (vida > 100) {
-                vida = 100;
-            }
-        } else {
-            cout << "Sua vida está cheia!" << endl;
-        }
-    }
+    // void magiaAtaque() {
+    //     if (vida < 100) {
+    //         vida += 15 + magia;
+    //         if (vida > 100) {
+    //             vida = 100;
+    //         }
+    //     } else {
+    //         cout << "Sua vida está cheia!" << endl;
+    //     }
+    // }
 
     void adicionarItem(const string& item) {
         for (int i = 0; i < 5; i++) {
@@ -97,69 +103,115 @@ public:
         unsigned seed = time(0);
         srand(seed);
         int danoInimigo = (rand()  % 20) - player.defesa; // Dano aleatório do inimigo
-        if (danoInimigo < 0) danoInimigo = 0; // O dano não pode ser negativo
+        if (danoInimigo < 0) danoInimigo = 1; // O dano não pode ser negativo
         player.vida -= danoInimigo; 
-        // cout << "Inimigo atacou, causando " << danoInimigo << " de dano!" << endl;
+        cout << "Inimigo atacou, causando " << danoInimigo << " de dano!" << endl;
         return danoInimigo;
     }
 };
+
+
+void inimigoAleatorio(Player &player, Inimigo &inimigo){
+    unsigned seed = time(0);
+    srand(seed);
+    inimigo.vida = (rand() % 50) + 50; // Reiniciar a vida do inimigo
+    if(player.ataque < inimigo.defesa){
+        inimigo.defesa = (rand() % 20) + 5; // Definição de defesa aleatória
+    }else{
+        inimigo.defesa = (rand() % 5) + 5; // Definição de defesa aleatória
+    }
+}
+
+void atacarInimigo(Inimigo &inimigo, Player &player){
+    unsigned seed = time(0);
+    srand(seed);
+    int dano = player.ataque - inimigo.defesa;
+    if (dano < 0) dano = 0; // O dano não pode ser negativo
+
+    inimigo.vida -= dano;
+    
+}
+
+void atacarPlayer(Inimigo &inimigo, Player &player){
+    int danoInimigo;
+    danoInimigo = inimigo.atacar(player);
+}
+
+void conjuraMagia(Player &player, Inimigo &inimigo, int &mana){
+    unsigned seed = time(0);
+    srand(seed);
+    int opcao;
+    int dado = rand() % 20;
+    cout << "mana: " << mana << endl;
+    cout << "1 - bola de fogo" << endl;
+    cout << "2 - cura" << endl;
+    cout << "3 - escudo" << endl;
+    cin >> opcao;
+
+    if(opcao == 1){
+        cout << "dado rolou: " << dado << endl;
+        if(dado > 15){
+            int dano = player.magia + 15;
+            if (dano < 0) dano = 0; // O dano não pode ser negativo
+            cout << "Bola de fogo foi lançada! Causando: " << dano << " de dano"<<endl;
+            mana -= 10;
+            inimigo.vida -= dano;
+        }else if(dado < 3){
+            cout << "bola de fogo falhou!" << endl;
+        }else if(dado > 2){
+            int dano = player.magia;
+            if (dano < 0) dano = 0; // O dano não pode ser negativo
+            cout << "Bola de fogo foi lançada! \nCausando: " << dano << " de dano"<<endl;
+            mana -= 10;
+            inimigo.vida -= dano;
+        }
+    }
+}
 
 int main() {
     Player player;
     Inimigo inimigo;
 
     // Adicionar alguns itens iniciais na mochila
-    player.adicionarItem("estus");
+    player.adicionarItem("Pocao de cura");
     player.adicionarItem("escudo");
 
     int escolha;
+    int mana = player.manaMaxima;
 
     do {
         if (inimigo.vida < 1) {
-            char opcao;
-            cout << "Você venceu!!" << endl << "Deseja continuar? [s/n]";
-            cin >> opcao;
-            system("cls");
-            if (opcao == 's' || opcao == 'S') {
-                inimigo.vida = (rand() % 50) + 50; // Reiniciar a vida do inimigo
-                if(player.ataque < inimigo.defesa){
-                inimigo.defesa = (rand() % 20) + 5; // Definição de defesa aleatória
-                }else{
-                    inimigo.defesa = (rand() % 5) + 5; // Definição de defesa aleatória
-                }
-                player.xp += 50; 
-            } else {
-                return 0;
-            }
+            inimigoAleatorio(player, inimigo);
+            player.xp += 50; 
         }
-
         if (player.xp >= 100) {
             player.sobeNivel();
             player.xp = 0;
         }
-        
-        system("cls");
 
+
+        
+        // system("cls; clear");
         cout << "Vida do inimigo: " << inimigo.vida << endl;
         cout << "Defesa do inimigo: " << inimigo.defesa << endl << endl;
         cout << "Vida do jogador: " << player.vida << endl;
         cout << "Ataque do jogador: " << player.ataque << endl;
         cout << "Defesa do jogador: " << player.defesa << endl;
+        cout << "Mana do jogador: " << mana << endl;
         cout << "XP do jogador: " << player.xp << endl << endl;
         cout << "O que deseja fazer? \n1- Atacar\n2- Curar\n3- Usar item\n4- Fugir\n";
         cin >> escolha;
 
-        int dano = player.ataque - inimigo.defesa;
-        if (dano < 0) dano = 0; // O dano não pode ser negativo
-        int danoInimigo;
+        
 
         switch (escolha) {
             case 1:
-                inimigo.vida -= dano;
-                danoInimigo = inimigo.atacar(player);
+                atacarInimigo(inimigo, player);
+                atacarPlayer(inimigo, player);
                 break;
             case 2:
-                player.magiaCura();
+                conjuraMagia(player, inimigo, mana);
+                atacarPlayer(inimigo, player);
                 break;
             case 3:
                 player.usarItem();
@@ -172,8 +224,9 @@ int main() {
 
     } while (player.vida > 0);
 
-    if (player.vida <= 0) {
+    if (player.vida < 1) {
+        
         cout << "Você perdeu!!" << endl;
-        return 0;
+        
     }
 }
