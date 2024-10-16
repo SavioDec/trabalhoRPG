@@ -308,14 +308,12 @@ int main()
 
         
         cout << "Vida do inimigo: " << inimigo.vida << endl;
-        cout << "Defesa do inimigo: " << inimigo.defesa << endl
-             << endl;
+        cout << "Defesa do inimigo: " << inimigo.defesa << endl << endl;
         cout << "Vida do jogador: " << player.vida << endl;
         cout << "Ataque do jogador: " << player.ataque << endl;
         cout << "Defesa do jogador: " << player.defesa << endl;
         cout << "Mana do jogador: " << player.mana << endl;
-        cout << "XP do jogador: " << player.xp << endl
-             << endl;
+        cout << "XP do jogador: " << player.xp << endl << endl;
         cout << "O que deseja fazer? \n1- Atacar\n2- Magia\n3- Usar item\n4- Fugir\n";
         cin >> escolha;
 
