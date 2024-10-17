@@ -47,6 +47,99 @@ public:
         }
     }
 
+
+    class Mapa {
+public:
+    int posX = 0;
+    int posY = 0;
+    const int largura = 5;
+    const int altura = 5;
+
+    int mapa[5][5] = {
+        {0, 0, 1, 0, 0},
+        {0, 0, 1, 0, 0},
+        {0, 0, 1, 0, 0},
+        {0, 0, 1, 1, 1},
+        {0, 0, 0, 1, 1}
+    };
+    void mostrarOpcoes() {
+        cout << "Você está na sala (" << posX << ", " << posY << ")." << endl;
+        cout << "Movimentos disponíveis:" << endl;
+
+        if (posX > 0) cout << "1- Frente" << endl;
+        if (posX < altura - 1) cout << "2- Trás" << endl;
+
+        // Verificar se esquerda/direita estão bloqueadas
+        if (posY > 0 && mapa[posX][posY - 1] == 0) {
+            cout << "3- Esquerda" << endl;
+        } else {
+            cout << "Esquerda bloqueada!" << endl;
+        }
+
+        if (posY < largura - 1 && mapa[posX][posY + 1] == 0) {
+            cout << "4- Direita" << endl;
+        } else {
+            cout << "Direita bloqueada!" << endl;
+        }
+    }
+
+    // Movimenta o jogador de acordo com a opção
+    void mover(int opcao) {
+        switch (opcao) {
+        case 1:
+            if (posX > 0) {
+                posX--;
+                cout << "Você se moveu para frente." << endl;
+            } else {
+                cout << "Movimento inválido!" << endl;
+            }
+            break;
+        case 2:
+            if (posX < altura - 1) {
+                posX++;
+                cout << "Você se moveu para trás." << endl;
+            } else {
+                cout << "Movimento inválido!" << endl;
+            }
+            break;
+        case 3:
+            if (posY > 0 && mapa[posX][posY - 1] == 0) {
+                posY--;
+                cout << "Você se moveu para a esquerda." << endl;
+            } else {
+                cout << "Movimento inválido!" << endl;
+            }
+            break;
+        case 4:
+            if (posY < largura - 1 && mapa[posX][posY + 1] == 0) {
+                posY++;
+                cout << "Você se moveu para a direita." << endl;
+            } else {
+                cout << "Movimento inválido!" << endl;
+            }
+            break;
+        default:
+            cout << "Opção inválida!" << endl;
+            break;
+        }
+    }
+
+    // Função para iniciar o mapa e movimentação
+    void iniciarMovimentacao() {
+        int opcao = 0;
+        while (true) {
+            mostrarOpcoes();
+            cout << "Escolha um movimento (0 para sair): ";
+            cin >> opcao;
+            if (opcao == 0) {
+                cout << "Saindo do mapa." << endl;
+                break;
+            }
+            mover(opcao);
+        }
+    }
+};
+
     // void magiaAtaque() {
     //     if (vida < 100) {
     //         vida += 15 + magia;
@@ -288,6 +381,10 @@ int main()
     player.adicionarItem("escudo");
     player.adicionarItem("Pocao de cura");
     player.adicionarItem("Pocao de mana");
+
+    Mapa mapa;
+    mapa.iniciarMovimentacao();
+    return 0;
 
     int escolha;
 
