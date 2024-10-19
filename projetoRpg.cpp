@@ -229,7 +229,7 @@ void conjuraMagia(Player &player, Inimigo &inimigo)
     if (opcao == 1)
     {
         cout << "dado rolou: " << dado << endl;
-        if (player.mana > 10)
+        if (player.mana > 9)
         {
             if (dado > 18)
             {
@@ -262,7 +262,7 @@ void conjuraMagia(Player &player, Inimigo &inimigo)
     }
     if (opcao == 2)
     {
-        if (player.mana > 5)
+        if (player.mana > 4)
         {
             if (dado > 18)
             {
@@ -296,7 +296,7 @@ void conjuraMagia(Player &player, Inimigo &inimigo)
     if (opcao == 3)
     {
         cout << "dado rolou: " << dado << endl;
-        if (player.mana > 35)
+        if (player.mana > 34)
         {
             if (dado > 18)
             {
