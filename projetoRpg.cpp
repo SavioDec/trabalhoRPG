@@ -30,7 +30,7 @@ public:
             cout << "1- Ataque - " << ataque << endl;
             cout << "2- Defesa - " << defesa << endl;
             cout << "3- Magia - " << magia << endl;
-            cout << "4- mana - " << manaMaxima << endl;
+            cout << "4- Mana maxima - " << manaMaxima << endl;
             cin >> escolha;
             switch (escolha)
             {
@@ -404,6 +404,7 @@ int main()
     unsigned seed = time(0);
     srand(seed);
     int opcao;
+    int vitoria;
     
 
 
@@ -491,6 +492,7 @@ int main()
         dado = rand() % 100;
         if (dado < 70)
         {
+            vitoria++;
             system("cls; clear");
             while (inimigo.vida > 0)
             {
@@ -544,7 +546,8 @@ int main()
                 }
                 if (player.vida < 1)
                 {
-                    cout << "Voce perdeu!!" << endl;
+                    cout << "Voce perdeu!!" << endl << endl;
+                    system("pause");
                     return 0;
                 }
             }
@@ -555,6 +558,10 @@ int main()
         }else{
             cout << "Nao achou nada" << endl;
         }
-
+        if(vitoria > 49){
+            cout << "Voce ganhou!!" << endl << endl;
+            system("pause");
+            return 0;
+        }
     } while (opcao != 5);
 }
