@@ -410,7 +410,7 @@ int main()
      Bau meuBau;
 
     int escolha;
-    int dado;
+
     int classes;
 
     cout << "Escolha sua classe: " << endl;
@@ -418,6 +418,7 @@ int main()
     cout << "2- Guerreiro (Poder Magico: 10 ;Mana: 50 ; defesa: 15; ataque: 20 )" << endl;
     cout << "3- Ladino (Poder Magico: 10 ; Mana: 50 ; defesa: 5 ; ataque: 30 )" << endl;
     cout << "4- Paladino (Poder Magico: 25 ; Mana: 70 ; defesa: 10 ; ataque: 15 )" << endl;
+    cout << "5- sair" << endl;
     cin >> classes;
 
     switch (classes)
@@ -463,7 +464,9 @@ int main()
         break;
     }
     default:
+        return 0;
         break;
+
     }
 
     do
