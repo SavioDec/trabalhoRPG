@@ -166,14 +166,14 @@ void inimigoAleatorio(Player &player, Inimigo &inimigo)
     unsigned seed = time(0);
     srand(seed);
 
-    inimigo.vida = (rand() % 50) + 50; // Reiniciar a vida do inimigo
+    inimigo.vida = (rand() % 60) + 50; // Reiniciar a vida do inimigo
     if (player.ataque < inimigo.defesa)
     {
-        inimigo.defesa = (rand() % 20) + 5; // Definicao de defesa aleatória
+        inimigo.defesa = (rand() % 20) + 5; // Definição de defesa aleatória
     }
     else
     {
-        inimigo.defesa = (rand() % 5) + 5; // Definicao de defesa aleatória
+        inimigo.defesa = (rand() % 5) + 5; // Definição de defesa aleatória
     }
 }
 
@@ -333,7 +333,7 @@ class Bau
 {
 public:
     string nome;
-
+    int flag = 0;
     void bau(Player &player)
     {
 
@@ -341,23 +341,27 @@ public:
 
         if (item == 0)
         {
+            flag = 1;
             nome = "Espada";
             player.ataque += 10;
             player.adicionarEquipamento("Espada");
         }
         else if (item == 1)
         {
+            flag = 0;
             nome = "Pocao de cura";
             player.adicionarItem("Pocao de cura");
         }
         else if (item == 2)
         {
+            flag = 1;
             nome = "Escudo";
             player.defesa += 4;
             player.adicionarEquipamento("Escudo");
         }
         else if (item == 3)
         {
+            flag = 1;
             nome = "Anel Magico";
             player.magia += 5;
             player.manaMaxima += 10;
@@ -365,11 +369,13 @@ public:
         }
         else if (item == 4)
         {
+            flag = 0;
             nome = "Pocao de mana";
             player.adicionarItem("Pocao de mana");
         }
         else
         {
+            flag = 1;
             nome = "Armadura";
             player.defesa += 5;
             player.adicionarEquipamento("armadura");
@@ -378,12 +384,15 @@ public:
 
     void mostrarItem(Player &player)
     {
-        cout << "Voce encontrou um(a) " << nome << "!" << endl;
-        cout << "Dano: " << player.ataque << endl;
-        cout << "Defesa: " << player.defesa << endl;
-        cout << "Magia: " << player.magia << endl;
-        cout << "Mana maxima: " << player.manaMaxima << endl;
-
+        if(flag == 1){
+            cout << "Voce encontrou um(a) " << nome << "!" << endl;
+            cout << "Novo dano: " << player.ataque << endl;
+            cout << "nova defesa: " << player.defesa << endl;
+            cout << "Novo poder magico: " << player.magia << endl;
+            cout << "Nova mana maxima: " << player.manaMaxima << endl;
+        }else if(flag == 0){
+            cout << "Voce encontrou um(a) " << nome << "!" << endl;
+        }
         
     }
 };
@@ -402,6 +411,61 @@ int main()
 
     int escolha;
     int dado;
+    int classes;
+
+    cout << "Escolha sua classe: " << endl;
+    cout << "1- Mago (Poder Magico: 35 ;Mana: 120 ; defesa: 5; ataque: 10; )" << endl;
+    cout << "2- Guerreiro (Poder Magico: 10 ;Mana: 50 ; defesa: 15; ataque: 20 )" << endl;
+    cout << "3- Ladino (Poder Magico: 10 ; Mana: 50 ; defesa: 5 ; ataque: 30 )" << endl;
+    cout << "4- Paladino (Poder Magico: 25 ; Mana: 70 ; defesa: 10 ; ataque: 15 )" << endl;
+    cin >> classes;
+
+    switch (classes)
+    {
+    case 1:
+    {
+        player.magia = 35;
+        player.manaMaxima = 120;
+        player.mana = player.manaMaxima;
+        player.defesa = 5;
+        player.ataque = 10;
+            
+        break;
+    }
+    case 2: 
+    {
+        player.magia = 10;
+        player.manaMaxima = 50;
+        player.mana = player.manaMaxima;
+        player.defesa = 15;
+        player.ataque = 20;
+
+        break;
+    }
+    case 3:
+    {
+        player.magia = 10;
+        player.manaMaxima = 50;
+        player.mana = player.manaMaxima;
+        player.defesa = 5;
+        player.ataque = 30;
+
+        break;
+    }
+    case 4:
+    {
+        player.magia = 25;
+        player.manaMaxima = 70;
+        player.mana = player.manaMaxima;
+        player.defesa = 10;
+        player.ataque = 15;
+
+        break;
+    }
+    default:
+        break;
+    }
+
     do
     {
         int dado = rand() % 100;
@@ -419,11 +483,12 @@ int main()
         cout << "3 - Leste \n";
         cout << "4 - Oeste \n";
         cout << "5 - sair \n";
+        cin.ignore();
         cin >> opcao;
         dado = rand() % 100;
-        if (dado < 40)
+        if (dado < 70)
         {
-            system("clear; cls");
+            system("cls; clear");
             while (inimigo.vida > 0)
             {
 
@@ -433,9 +498,11 @@ int main()
                 cout << "Vida do jogador: " << player.vida << endl;
                 cout << "Ataque do jogador: " << player.ataque << endl;
                 cout << "Defesa do jogador: " << player.defesa << endl;
+                cout << "Poder Magico do jogador: " << player.magia << endl;
                 cout << "Mana do jogador: " << player.mana << endl;
                 cout << "XP do jogador: " << player.xp << endl << endl;
                 cout << "O que deseja fazer? \n1- Atacar\n2- Magia\n3- Usar item\n4- Mostrar equipamentos\n5- Fugir\n";
+                cin.ignore();
                 cin >> escolha;
 
                 switch (escolha)
@@ -478,11 +545,12 @@ int main()
                     return 0;
                 }
             }
-        }else{
+        }else if(dado > 30){
             //colocar o bau aqui
             meuBau.bau(player);
             meuBau.mostrarItem(player);
-
+        }else{
+            cout << "Nao achou nada" << endl;
         }
 
     } while (opcao != 5);
