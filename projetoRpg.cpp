@@ -198,7 +198,7 @@ void atacarInimigo(Inimigo &inimigo, Player &player)
     else if (dado > 5)
     {
         cout << "dano causado: " << dano << endl;
-        dano;
+        dano = player.ataque - inimigo.defesa;
     }
     else
     {
