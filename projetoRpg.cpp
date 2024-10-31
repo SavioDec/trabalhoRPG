@@ -3,8 +3,18 @@
 #include <ctime>
 #include <string>
 #include <array>
+#include "Personagem.h"
 
 using namespace std;
+
+struct Personagens{
+    int vida;
+    int ataque;
+    int defesa;
+    int magia;
+    int manaMaxima;
+    int mana;
+};
 
 class Player
 {
@@ -558,10 +568,12 @@ int main()
         }else{
             cout << "Nao achou nada" << endl;
         }
-        if(vitoria > 49){
+        
+    } while (opcao != 5);
+
+    if(vitoria > 49){
             cout << "Voce ganhou!!" << endl << endl;
             system("pause");
             return 0;
-        }
-    } while (opcao != 5);
+    }
 }
