@@ -414,22 +414,25 @@ void CadastrarPlayer(){
     string data;
     string linha;
 
-    ofstream arquivo ("Personagem.txt");
-    arquivo.open("Personagem.txt");
-    ifstream lerArquivo("Personagem.txt");
-    
-    if(arquivo.is_open()){
-        while(getline(lerArquivo, linha)){
-            cout<<linha;
+    fstream arquivo ;
+    arquivo.open("Personagem.txt", ios::in);
+     
+    if(arquivo){
+        while(getline(arquivo, linha)){
+            cout<< linha << endl;
         }
-        arquivo.close();
     }else{
+        arquivo.open("Personagem.txt", ios::out);
         cout<< "Digite seu nome(Escolha um nome bem criativo): ";
         getline(cin, userName);
+
         cout<<"Data de hoje(DD/MM/AAAA) : ";
         getline(cin, data);
+
         arquivo<<"Nome do personagem : "<< userName << endl << "Data de Login : "<<data;
-        cout<<"Personagem cadastrado com suecesso !!"<<endl;
+        cout<<"Personagem cadastrado com sucesso !!"<<endl;
+        arquivo.close();
+       
         arquivo.close();
     }
     cout<<"Boa aventura !"<<endl<<endl;
@@ -449,7 +452,7 @@ int main()
     
 
 
-     Bau meuBau;
+    Bau meuBau;
 
     int escolha;
 
