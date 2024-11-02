@@ -3,6 +3,7 @@
 #include <ctime>
 #include <string>
 #include <array>
+#include<fstream>
 #include "Personagem.h"
 
 using namespace std;
@@ -33,7 +34,7 @@ public:
     {
         if (xp >= 100)
         {
-
+            system("cls; clear");
             int escolha;
             cout << "Subiu de nivel!!" << endl
                  << "Qual atributo deseja upar?" << endl;
@@ -189,6 +190,7 @@ void inimigoAleatorio(Player &player, Inimigo &inimigo)
 
 void atacarInimigo(Inimigo &inimigo, Player &player)
 {
+    system("cls; clear");
     unsigned seed = time(0);
     srand(seed);
     int dado = rand() % 20;
@@ -407,6 +409,35 @@ public:
     }
 };
 
+void CadastrarPlayer(){
+    string userName;
+    string data;
+    string linha;
+
+    ofstream arquivo ("Personagem.txt");
+    arquivo.open("Personagem.txt");
+    ifstream lerArquivo("Personagem.txt");
+    
+    if(arquivo.is_open()){
+        while(getline(lerArquivo, linha)){
+            cout<<linha;
+        }
+        arquivo.close();
+    }else{
+        cout<< "Digite seu nome(Escolha um nome bem criativo): ";
+        getline(cin, userName);
+        cout<<"Data de hoje(DD/MM/AAAA) : ";
+        getline(cin, data);
+        arquivo<<"Nome do personagem : "<< userName << endl << "Data de Login : "<<data;
+        cout<<"Personagem cadastrado com suecesso !!"<<endl;
+        arquivo.close();
+    }
+    cout<<"Boa aventura !"<<endl<<endl;
+
+}
+
+
+
 int main()
 {
     Player player;
@@ -424,6 +455,12 @@ int main()
 
     int classes;
 
+    string userName;
+    string data;
+
+    CadastrarPlayer();
+
+    
     cout << "Escolha sua classe: " << endl;
     cout << "1- Mago (Poder Magico: 35 ;Mana: 120 ; defesa: 5; ataque: 10; )" << endl;
     cout << "2- Guerreiro (Poder Magico: 10 ;Mana: 50 ; defesa: 15; ataque: 20 )" << endl;
@@ -489,7 +526,7 @@ int main()
             inimigoAleatorio(player, inimigo);
             player.xp += 50;
         }
-
+        system("cls; clear");
         player.sobeNivel();
         cout << "qual caminho deseja escolher? \n";
         cout << "1 - Norte \n";
@@ -556,6 +593,7 @@ int main()
                 }
                 if (player.vida < 1)
                 {
+                    system("cls; clear");
                     cout << "Voce perdeu!!" << endl << endl;
                     system("pause");
                     return 0;
@@ -572,6 +610,7 @@ int main()
     } while (opcao != 5);
 
     if(vitoria > 49){
+            system("cls; clear");
             cout << "Voce ganhou!!" << endl << endl;
             system("pause");
             return 0;
