@@ -11,9 +11,6 @@
 
 using namespace std;
 
-void HistoriaPerson(){
-
-};
 
 void limpaTela() {
         #ifdef _WIN32

@@ -20,13 +20,26 @@ struct Classes
     int magia = 15;
     int manaMaxima = 50;
 };
+
+void HistoriaPerson(){
+    //historia dos personagens
+
+    cout << "uma historia qualquer" << endl;
+    #ifdef _WIN32
+            system("pause");
+        #else
+        cout << "...Presione Enter para continuar...";
+            int c = getchar();
+        #endif
+};
+
 //function para escolha da classe do jogado
 Classes personagens()
 {
 
     Classes classe;
     int person;
-    
+    HistoriaPerson();
     cout << "Escolha sua classe: " << endl;
     cout << "1- Mago (Poder Magico: 35 ; Mana: 120 ; vida: 100 ; defesa: 5 ; ataque: 10; )" << endl;
     cout << "2- Guerreiro (Poder Magico: 10 ; Mana: 50 ; vida: 100 ; defesa: 15 ; ataque: 20 )" << endl;
