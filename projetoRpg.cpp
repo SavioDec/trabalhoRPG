@@ -3,228 +3,26 @@
 #include <ctime>
 #include <string>
 #include <array>
-#include<fstream>
-#include "Personagem.h"
+#include <fstream>
+#include "Personagem.hpp"
+#include "Player.hpp"
+#include "Inimigo.hpp"
+#include "Bau.hpp"
 
 using namespace std;
 
-struct Personagens{
-    int vida;
-    int ataque;
-    int defesa;
-    int magia;
-    int manaMaxima;
-    int mana;
+void HistoriaPerson(){
+
 };
 
-class Player
-{
-public:
-    int vida = 100;
-    int ataque = 10;
-    int defesa = 5;
-    int magia = 15;
-    int manaMaxima = 50;
-    int mana = manaMaxima;
-    int xp = 0;
-    array<string, 5> mochila;
-    array<string, 5> equipamentos;
-
-    void sobeNivel()
-    {
-        if (xp >= 100)
-        {
-            system("cls; clear");
-            int escolha;
-            cout << "Subiu de nivel!!" << endl
-                 << "Qual atributo deseja upar?" << endl;
-            cout << "1- Ataque - " << ataque << endl;
-            cout << "2- Defesa - " << defesa << endl;
-            cout << "3- Magia - " << magia << endl;
-            cout << "4- Mana maxima - " << manaMaxima << endl;
-            cin >> escolha;
-            switch (escolha)
-            {
-            case 1:
-                ataque += 1;
-                break;
-            case 2:
-                defesa += 1;
-                break;
-            case 3:
-                magia += 1;
-                break;
-            case 4:
-                manaMaxima += 5;
-                break;
-            default:
-                break;
-            }
-            xp = 0;
-        }
-    }
-
-    void adicionarItem(const string &item)
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            if (mochila[i].empty())
-            {
-                mochila[i] = item;
-                cout << "Item '" << item << "' adicionado na mochila." << endl;
-                return;
-            }
-        }
-        cout << "Mochila cheia! Nao é possivel adicionar mais itens." << endl;
-        for (int i = 0; i < 5; i++)
-        {
-            if (equipamentos[i].empty())
-            {
-                equipamentos[i] = item;
-                cout << "Item '" << item << "' adicionado nos equipamentos." << endl;
-                return;
-            }
-        }
-        cout << "equipamento cheio! Nao é possivel adicionar mais itens." << endl;
-    }
-    void adicionarEquipamento(const string &item)
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            if (equipamentos[i].empty())
-            {
-                equipamentos[i] = item;
-                cout << "Item '" << item << "' adicionado nos equipamentos." << endl;
-                return;
-            }
-        }
-        cout << "equipamento cheio! Nao é possivel adicionar mais itens." << endl;
-    }
-
-    void mostraEquipamento(){
-        cout << "equipamentos: " << endl;
-        for (int i = 0; i < 5; i++)
-        {
-                cout << i + 1 << "- " << equipamentos[i] << endl;
-        }
-    }
-
-    void usarItem()
-    {
-        cout << "Itens na mochila: " << endl;
-        for (int i = 0; i < 5; i++)
-        {
-            if (!mochila[i].empty())
-            {
-                cout << i + 1 << "- " << mochila[i] << endl;
-            }
-        }
-        
-        int escolha;
-        cout << "Item para usar: ";
-        cin >> escolha;
-
-        if (escolha > 0 && escolha <= 5 && !mochila[escolha - 1].empty())
-        {
-            string itemUsado = mochila[escolha - 1];
-            cout << "Usando: " << itemUsado << endl;
-            if (itemUsado == "Pocao de cura")
-            {
-                vida += 20;
-                if (vida > 100)
-                    vida = 100;
-                cout << "Vida atual: " << vida << endl;
-            }
-            if (itemUsado == "Pocao de mana")
-            {
-                mana += 30;
-                if (mana > manaMaxima)
-                    mana = manaMaxima;
-                cout << "Mana atual: " << mana << endl;
-            }
-            mochila[escolha - 1] = "";
-        }
-        else
-        {
-            cout << "Item nao encontrado." << endl;
-        }
-    }
-};
-
-class Inimigo
-{
-public:
-    int vida = 50;
-    int ataque = 10;
-    int defesa = 5;
-
-    int atacar(Player &player)
-    {
-        unsigned seed = time(0);
-        srand(seed);
-
-        int danoInimigo = (rand() % 20) - player.defesa; // Dano aleatório do inimigo
-        if (danoInimigo < 5)
-            danoInimigo = 5; // O dano nao pode ser negativo
-        player.vida -= danoInimigo;
-        cout << "Inimigo atacou, causando " << danoInimigo << " de dano!" << endl;
-        return danoInimigo;
-    }
-};
-
-void inimigoAleatorio(Player &player, Inimigo &inimigo)
-{
-    unsigned seed = time(0);
-    srand(seed);
-
-    inimigo.vida = (rand() % 60) + 50; // Reiniciar a vida do inimigo
-    if (player.ataque < inimigo.defesa)
-    {
-        inimigo.defesa = (rand() % 20) + 5; // Definição de defesa aleatória
-    }
-    else
-    {
-        inimigo.defesa = (rand() % 5) + 5; // Definição de defesa aleatória
-    }
+void limpaTela() {
+        #ifdef _WIN32
+            system("cls");
+        #else
+            system("clear");
+        #endif
 }
 
-void atacarInimigo(Inimigo &inimigo, Player &player)
-{
-    system("cls; clear");
-    unsigned seed = time(0);
-    srand(seed);
-    int dado = rand() % 20;
-    int dano = player.ataque - inimigo.defesa;
-    if (dano < 0)
-        dano = 0; // O dano nao pode ser negativo
-    if (dado > 18)
-    {
-        cout << "dano critico!! causado: " << dano << endl;
-        dano = (player.ataque + 10) - inimigo.defesa;
-    }
-    else if (dado > 10)
-    {
-        cout << "dano causado: " << dano << endl;
-        dano = (player.ataque + 5) - inimigo.defesa;
-    }
-    else if (dado > 5)
-    {
-        cout << "dano causado: " << dano << endl;
-        dano = player.ataque - inimigo.defesa;
-    }
-    else
-    {
-        cout << "inimigo desviou!!" << endl;
-        dano = 0;
-    }
-
-    inimigo.vida -= dano;
-}
-
-void atacarPlayer(Inimigo &inimigo, Player &player)
-{
-    int danoInimigo = inimigo.atacar(player);
-}
 
 void conjuraMagia(Player &player, Inimigo &inimigo)
 {
@@ -248,7 +46,7 @@ void conjuraMagia(Player &player, Inimigo &inimigo)
                 int dano = player.magia + 15;
                 if (dano < 0)
                     dano = 0; // O dano nao pode ser negativo
-                cout << "Dano critico!!!!\nBola de fogo foi conjurado! Causando: " << dano << " de dano" << endl;
+                cout << "DANO CRITICO!!!!\nBola de fogo foi conjurado! Causando: " << dano << " de dano" << endl;
                 player.mana -= 10;
                 inimigo.vida -= dano;
             }
@@ -341,75 +139,8 @@ void conjuraMagia(Player &player, Inimigo &inimigo)
     }
 }
 
-class Bau
-{
-public:
-    string nome;
-    int flag = 0;
-    void bau(Player &player)
-    {
-
-        int item = rand() % 5;
-
-        if (item == 0)
-        {
-            flag = 1;
-            nome = "Espada";
-            player.ataque += 10;
-            player.adicionarEquipamento("Espada");
-        }
-        else if (item == 1)
-        {
-            flag = 0;
-            nome = "Pocao de cura";
-            player.adicionarItem("Pocao de cura");
-        }
-        else if (item == 2)
-        {
-            flag = 1;
-            nome = "Escudo";
-            player.defesa += 4;
-            player.adicionarEquipamento("Escudo");
-        }
-        else if (item == 3)
-        {
-            flag = 1;
-            nome = "Anel Magico";
-            player.magia += 5;
-            player.manaMaxima += 10;
-            player.adicionarEquipamento("Anel Magico");
-        }
-        else if (item == 4)
-        {
-            flag = 0;
-            nome = "Pocao de mana";
-            player.adicionarItem("Pocao de mana");
-        }
-        else
-        {
-            flag = 1;
-            nome = "Armadura";
-            player.defesa += 5;
-            player.adicionarEquipamento("armadura");
-        }
-    }
-
-    void mostrarItem(Player &player)
-    {
-        if(flag == 1){
-            cout << "Voce encontrou um(a) " << nome << "!" << endl;
-            cout << "Novo dano: " << player.ataque << endl;
-            cout << "nova defesa: " << player.defesa << endl;
-            cout << "Novo poder magico: " << player.magia << endl;
-            cout << "Nova mana maxima: " << player.manaMaxima << endl;
-        }else if(flag == 0){
-            cout << "Voce encontrou um(a) " << nome << "!" << endl;
-        }
-        
-    }
-};
-
 void CadastrarPlayer(){
+    limpaTela();
     string userName;
     string data;
     string linha;
@@ -423,6 +154,8 @@ void CadastrarPlayer(){
         }
     }else{
         arquivo.open("Personagem.txt", ios::out);
+
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout<< "Digite seu nome(Escolha um nome bem criativo): ";
         getline(cin, userName);
 
@@ -449,79 +182,18 @@ int main()
     srand(seed);
     int opcao;
     int vitoria;
-    
-
-
     Bau meuBau;
-
     int escolha;
-
-    int classes;
-
     string userName;
     string data;
 
+
+
     CadastrarPlayer();
-
-    
-    cout << "Escolha sua classe: " << endl;
-    cout << "1- Mago (Poder Magico: 35 ;Mana: 120 ; defesa: 5; ataque: 10; )" << endl;
-    cout << "2- Guerreiro (Poder Magico: 10 ;Mana: 50 ; defesa: 15; ataque: 20 )" << endl;
-    cout << "3- Ladino (Poder Magico: 10 ; Mana: 50 ; defesa: 5 ; ataque: 30 )" << endl;
-    cout << "4- Paladino (Poder Magico: 25 ; Mana: 70 ; defesa: 10 ; ataque: 15 )" << endl;
-    cout << "5- sair" << endl;
-    cin >> classes;
-
-    switch (classes)
-    {
-    case 1:
-    {
-        player.magia = 35;
-        player.manaMaxima = 120;
-        player.mana = player.manaMaxima;
-        player.defesa = 5;
-        player.ataque = 10;
-            
-        break;
-    }
-    case 2: 
-    {
-        player.magia = 10;
-        player.manaMaxima = 50;
-        player.mana = player.manaMaxima;
-        player.defesa = 15;
-        player.ataque = 20;
-
-        break;
-    }
-    case 3:
-    {
-        player.magia = 10;
-        player.manaMaxima = 50;
-        player.mana = player.manaMaxima;
-        player.defesa = 5;
-        player.ataque = 30;
-
-        break;
-    }
-    case 4:
-    {
-        player.magia = 25;
-        player.manaMaxima = 70;
-        player.mana = player.manaMaxima;
-        player.defesa = 10;
-        player.ataque = 15;
-
-        break;
-    }
-    default:
-        return 0;
-        break;
-
-    }
 
     do
     {
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         int dado = rand() % 100;
         if (inimigo.vida < 1)
         {
@@ -529,7 +201,6 @@ int main()
             inimigoAleatorio(player, inimigo);
             player.xp += 50;
         }
-        system("cls; clear");
         player.sobeNivel();
         cout << "qual caminho deseja escolher? \n";
         cout << "1 - Norte \n";
@@ -537,17 +208,20 @@ int main()
         cout << "3 - Leste \n";
         cout << "4 - Oeste \n";
         cout << "5 - sair \n";
-        cin.ignore();
         cin >> opcao;
+        if(opcao == 5){
+            return 0;
+        }
         dado = rand() % 100;
         if (dado < 70)
         {
             vitoria++;
-            system("cls; clear");
+            limpaTela();
+            cout << "Um inimigo apareceu!!!!!!" << endl<<endl;; 
+
             while (inimigo.vida > 0)
             {
 
-                cout << "Um inimigo apareceu!!!!!!" << endl<<endl;; 
                 cout << "Vida do inimigo: " << inimigo.vida << endl;
                 cout << "Defesa do inimigo: " << inimigo.defesa << endl << endl;
                 cout << "Vida do jogador: " << player.vida << endl;
@@ -557,18 +231,17 @@ int main()
                 cout << "Mana do jogador: " << player.mana << endl;
                 cout << "XP do jogador: " << player.xp << endl << endl;
                 cout << "O que deseja fazer? \n1- Atacar\n2- Magia\n3- Usar item\n4- Mostrar equipamentos\n5- Fugir\n";
-                cin.ignore();
                 cin >> escolha;
 
                 switch (escolha)
                 {
                 case 1:
                     atacarInimigo(inimigo, player);
-                    if (inimigo.vida > 0) atacarPlayer(inimigo, player);
+                    if (inimigo.vida > 0) inimigo.atacarPlayer(player);
                     break;
                 case 2:
                     conjuraMagia(player, inimigo);
-                    if (inimigo.vida > 0) atacarPlayer(inimigo, player);
+                    if (inimigo.vida > 0) inimigo.atacarPlayer(player);
                     break;
                 case 3:
                     player.usarItem();
@@ -609,13 +282,13 @@ int main()
         }else{
             cout << "Nao achou nada" << endl;
         }
-        
-    } while (opcao != 5);
-
-    if(vitoria > 49){
-            system("cls; clear");
+        if(vitoria > 49){
+            limpaTela();
             cout << "Voce ganhou!!" << endl << endl;
             system("pause");
             return 0;
     }
+    } while (opcao != 5);
+
+    
 }
