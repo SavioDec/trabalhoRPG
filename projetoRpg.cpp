@@ -146,14 +146,16 @@ void CadastrarPlayer(){
     arquivo.open("Personagem.txt", ios::in);
      
     if(arquivo){
-        while(getline(arquivo, linha)){
+        while(getline(arquivo, linha)){  
             cout<< linha << endl;
         }
+        arquivo.close();
     }else{
+    
         arquivo.open("Personagem.txt", ios::out);
 
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout<< "Digite seu nome(Escolha um nome bem criativo): ";
+        cout<< "Digite o nome do seu Personagem (Escolha um nome bem criativo): ";
         getline(cin, userName);
 
         cout<<"Data de hoje(DD/MM/AAAA) : ";
@@ -163,7 +165,6 @@ void CadastrarPlayer(){
         cout<<"Personagem cadastrado com sucesso !!"<<endl;
         arquivo.close();
        
-        arquivo.close();
     }
     cout<<"Boa aventura !"<<endl<<endl;
 
