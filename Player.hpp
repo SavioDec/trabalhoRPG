@@ -7,8 +7,8 @@
 
 using namespace std;
 
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef PLAYER_HPP
+#define PLAYER_HPP
 
 class Player
 {
@@ -128,14 +128,14 @@ public:
             cout << "Usando: " << itemUsado << endl;
             if (itemUsado == "Pocao de cura")
             {
-                vida += 30;
+                vida += 60;
                 if (vida > vidaMax)
                     vida = vidaMax;
                 cout << "Vida atual: " << vida << endl;
             }
             if (itemUsado == "Pocao de mana")
             {
-                mana += 30;
+                mana += 80;
                 if (mana > manaMaxima)
                     mana = manaMaxima;
                 cout << "Mana atual: " << mana << endl;

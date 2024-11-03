@@ -7,6 +7,8 @@
 #include<ios> //used to get stream size
 #include<limits> //used to get numeric limits
 
+
+
 using namespace std;
 
 #ifndef PERSONAGEM_HPP
@@ -25,37 +27,43 @@ struct Classes
 void PausaJogo(){
     #ifdef _WIN32
             system("pause");
-        #else
-        cout << "...Presione Enter para continuar...";
-            int c = getchar();
-        #endif
+    #else
+        cout << "...Presione Enter para continuar..." << endl;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    #endif
 }
 void limpaTela() {
-        #ifdef _WIN32
-            system("cls");
-        #else
-            system("clear");
-        #endif
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
 }
 
 void HistoriaPerson(int &person){
     //historia dos personagens
-
+    
     if(person == 1) {
-        cout << endl << "Sir Aldric cresceu em uma vila humilde, treinado por seu pai, um cavaleiro que servia o rei. Ele aprendeu desde cedo o valor da honra e jurou proteger os fracos, sempre fiel ao dever." << endl;
+        cout << endl <<"Elenion nasceu em uma familia de estudiosos e se dedicou a magia desde jovem. Em sua torre isolada, ele buscava desvendar os segredos antigos, acumulando vasto conhecimento.\nEm uma noite de estudo, Elenion invocou acidentalmente uma entidade sombria que comecou a distorcer a realidade ao seu redor, ameaçando destrui-lo." << endl;
     }
     if(person == 2) {
-        cout << endl << "Kael cresceu nas ruas caoticas de Eldorath, sobrevivendo como ladrao. Conhecido como 'Mao-leve' por sua destreza, ele se tornou uma lenda local, especialista em furtos e esquemas" << endl;
+        cout << endl << "Sir Aldric cresceu em uma vila humilde, treinado por seu pai, um cavaleiro que servia o rei. Ele aprendeu desde cedo o valor da honra e jurou proteger os fracos, sempre fiel ao dever.\nEm uma missão para recuperar um artefato sagrado, Aldric e caiu em uma emboscada\nSozinho e ferido, ele se escondeu em uma caverna, onde pediu forças aos deuses." << endl;
     }
     if(person == 3) {
-        cout << endl <<"Elenion nasceu em uma familia de estudiosos e se dedicou a magia desde jovem. Em sua torre isolada, ele buscava desvendar os segredos antigos, acumulando vasto conhecimento." << endl;
+        
+        cout << endl << "Kael cresceu nas ruas caoticas de Eldorath, sobrevivendo como ladrao. Conhecido como 'Mao-leve' por sua destreza, ele se tornou uma lenda local, especialista em furtos e esquemas\nKael foi contratado para roubar um artefato magico, mas caiu em uma armadilha que o transportou para uma dimensao ilusoria.\nPreso, ele precisava escapar..." << endl;
     }
     if(person == 4) {
-        cout << endl <<"Thalia foi criada em um templo dedicado a deusa da justica. Ela jurou proteger os inocentes e lutar contra o mal, guiada pela fe e pela espada." << endl;
+        cout << endl <<"Thalia foi criada em um templo dedicado a deusa da justica. Ela jurou proteger os inocentes e lutar contra o mal, guiada pela fe e pela espada.\nDurante uma missão, Thalia enfrentou um poderoso demonio que dominava um vilarejo.\nFerida e com sua espada quebrada, ela se viu enfraquecida, mas não derrotada." << endl;
     }
     if(person == 5) {
-        cout << endl << "Gromak nasceu nas gelidas planicies de Tharok, onde a força era a unica lei. Ele se tornou lider de sua tribo apos a morte de seu pai, conhecido por sua ferocidade em batalha." << endl;
+        cout << endl << "Gromak nasceu nas gelidas planicies de Tharok, onde a força era a unica lei. Ele se tornou lider de sua tribo apos a morte de seu pai, conhecido por sua ferocidade em batalha.\nDurante uma cacada, Gromak e seus guerreiros enfrentaram uma criatura colossal, o 'Devorador de Montanhas'. Quase todos foram mortos, mas Gromak não recuou.\nAo ataca-lo novamente o 'Devorador de Montanhas' o pega e arremessa Gromak para muito longe." << endl;
     }
+
+    // Cenario inicial
+    cout << endl << "Voce entrou na Floresta Enfeiticada" << endl;
+    cout <<"Voce caminha por uma trilha sinuosa, cercado por arvores altas e uma nevoa densa. A sensacao de estar sendo observado e constante, e algo se move nas sombras, mas voce nao consegue ver o que e." << endl;
+    cout << "Ao verem sua situacao os deuses lhe favorecem concedendo-o duas pocoes" << endl;
     PausaJogo();
 };
 
@@ -88,7 +96,6 @@ void CadastrarPlayer(){
         arquivo<<"Nome do personagem : "<< userName << endl << "Data de Login : "<<data;
         cout<<"Personagem cadastrado com sucesso !!"<<endl;
         arquivo.close();
-       
     }
     cout<<"Boa aventura !"<<endl<<endl;
 
@@ -104,11 +111,11 @@ Classes personagens()
     int person;
     
     cout << "Escolha sua classe: " << endl;
-    cout << "1- Mago - Elenion, o Sabio (Poder Magico: 35 ; Mana: 120 ; vida: 100 ; defesa: 5 ; ataque: 10; )" << endl;
+    cout << "1- Mago - Elenion, o Sabio (Poder Magico: 35 ; Mana: 150 ; vida: 100 ; defesa: 5 ; ataque: 10; )" << endl;
     cout << "2- Cavaleiro - Sir Aldric de Valon (Poder Magico: 10 ; Mana: 50 ; vida: 100 ; defesa: 15 ; ataque: 20 )" << endl;
     cout << "3- Ladino - Kael 'Mao-Leve' (Poder Magico: 10 ; Mana: 50 ; vida: 100 ;defesa: 7 ; ataque: 30 )" << endl;
     cout << "4- Paladino - Thalia, a Portadora da Luz (Poder Magico: 25 ; Mana: 70 ; vida : 100 ; defesa: 10 ; ataque: 15 )" << endl;
-    cout << "5- Barbaro - Gromak, o Impiedoso (Poder Magico: 0 ; Mana: 0 ; vida: 150 ; defesa: 5 ; ataque: 45 )" << endl;
+    cout << "5- Barbaro - Gromak, o Impiedoso (Poder Magico: 0 ; Mana: 5 ; vida: 130 ; defesa: 5 ; ataque: 35 )" << endl;
     cin >> person;
 
     CadastrarPlayer();
@@ -121,7 +128,7 @@ Classes personagens()
         HistoriaPerson(person);
         classe.vidaMax = 100;
         classe.magia = 35;
-        classe.manaMaxima = 120;
+        classe.manaMaxima = 150;
         classe.defesa = 5;
         classe.ataque = 10;
         return classe;
@@ -167,18 +174,19 @@ Classes personagens()
     {
         //Barbaro
         HistoriaPerson(person);
-        classe.vidaMax = 150;
+        classe.vidaMax = 130;
         classe.magia = 0;
-        classe.manaMaxima = 0;
+        classe.manaMaxima = 5;
         classe.defesa = 5;
-        classe.ataque = 45;
+        classe.ataque = 35;
         return classe;
         break;
     }
     case 2808:
     {
         //Modo desenvolvedor 
-        classe.magia = 200;
+        classe.vidaMax = 1000;
+        classe.magia = 350;
         classe.manaMaxima = 1000;
         classe.defesa = 500;
         classe.ataque = 350;
@@ -188,7 +196,9 @@ Classes personagens()
     default:
         break;
     }
+    
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    
     return classe;
 };
 

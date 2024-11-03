@@ -1,18 +1,8 @@
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
-#include <string>
-#include <array>
-#include <fstream>
-#include "Personagem.hpp"
 #include "Player.hpp"
 #include "Inimigo.hpp"
 #include "Bau.hpp"
 
 using namespace std;
-
-
-
 
 
 void conjuraMagia(Player &player, Inimigo &inimigo)
@@ -67,7 +57,7 @@ void conjuraMagia(Player &player, Inimigo &inimigo)
         {
             if (dado > 18)
             {
-                int cura = player.magia + 10;
+                int cura = player.magia + 15;
                 player.mana -= 5;
                 player.vida += cura;
                 if (player.vida > 100)
@@ -77,7 +67,7 @@ void conjuraMagia(Player &player, Inimigo &inimigo)
             else if (dado > 5)
             {
                 player.mana -= 5;
-                int cura = player.magia;
+                int cura = player.magia + 6;
                 player.vida += cura;
                 if (player.vida > 100)
                     player.vida = 100;
@@ -141,11 +131,13 @@ int main()
     unsigned seed = time(0);
     srand(seed);
     int opcao;
-    int cenarios = 0;
+    int cenarios = 10;
     Bau meuBau;
     int escolha;
+    int flag = 1;
 
-    
+    player.adicionarItem("Pocao de cura");
+    player.adicionarItem("Pocao de mana");
     
     do
     {
@@ -158,13 +150,7 @@ int main()
             player.xp += 50;
         }
         player.sobeNivel();
-        if(cenarios < 10){
-            // Cenario inicial
-            limpaTela();
-            cout << "Voce entrou na Floresta Enfeiticada" << endl;
-            cout <<"Voce caminha por uma trilha sinuosa, cercado por arvores altas e uma nevoa densa. A sensacao de estar sendo observado e constante, e algo se move nas sombras, mas voce nao consegue ver o que e." << endl;
-            PausaJogo();
-        }
+        
         cout << "qual caminho deseja escolher? \n";
         cout << "1 - Norte \n";
         cout << "2 - Sul \n";
@@ -245,27 +231,30 @@ int main()
         }else{
             cout << "Nao achou nada" << endl;
         }
-        
-        if(cenarios > 10){
+        if(cenarios > 10 && flag == 1 ){
             //segundo cenario
+            flag = 2;
             limpaTela();
-            cout << "Fortaleza Abandonada" << endl;
-            cout <<"Dentro da antiga fortaleza, tudo está em ruinas. Você sente o ar frio enquanto explora o salao principal, onde o silencio é interrompido apenas pelos ecos dos seus passos. Algo, ou alguem, parece estar escondido nas sombras." << endl;
+            cout << "Entrando na Fortaleza Abandonada" << endl;
+            cout <<"Ao entrar dentro da antiga fortaleza, voce observa que tudo está em ruinas.\nVocê sente o ar frio enquanto explora o salao principal, onde o silencio é interrompido apenas pelos ecos dos seus passos. Algo, ou alguem, parece estar escondido nas sombras." << endl;
             PausaJogo();
             
-        }else if(cenarios > 20){
+        }else if(cenarios > 20 && flag == 3){
             //terceiro cenario
+            flag = 4;
             limpaTela();
-            cout << "Caverna dos Goblins" << endl;
-            cout <<"Voce entra na caverna ouve tambores a frente, e uma quantidade enorma de sombras se movendo. A decisao agora e sua: fugir ou enfrenta-los diretamente." << endl;
+            cout << "Entrando na Caverna dos Goblins" << endl;
+            cout <<"Voce entra na caverna onde ouve tambores a frente e uma quantidade enorma de sombras se movendo.\nA decisao agora e sua: fugir ou enfrenta-los diretamente." << endl;
             PausaJogo();
-        }else if(cenarios > 30){
+        }else if(cenarios > 30 && flag == 4){
             //quarto cenario
+            flag = 5;
             limpaTela();
-            cout << "A Vila Ameacada" << endl;
-            cout << "A pequena vila esta em alerta, temendo um ataque iminente. Com poucas defesas, voce deve ajudar os moradores a se prepararem antes que os saqueadores cheguem ao anoitecer." << endl;
+            cout << "Entrando na Vila Abandonada" << endl;
+            cout << "A pequena vila abandonada esta mergulhada em um silencio absoluto; um calafrio percorre sua espinha, e você percebe que não esta sozinho." << endl;
             PausaJogo();
         }
+        
     } while (opcao != 5);
 
     

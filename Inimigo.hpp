@@ -20,7 +20,7 @@ public:
         unsigned seed = time(0);
         srand(seed);
 
-        int danoInimigo = (rand() % 20) - player.defesa; // Dano aleatório do inimigo
+        int danoInimigo = (rand() % 25) - player.defesa; // Dano aleatório do inimigo
         if (danoInimigo < 5)
             danoInimigo = 5; // O dano nao pode ser negativo
         player.vida -= danoInimigo;
