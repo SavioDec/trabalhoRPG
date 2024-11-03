@@ -7,13 +7,15 @@
 
 using namespace std;
 
-
 class Inimigo
 {
+    //determina características do objeto inimigo
 public:
     int vida = 50;
     int ataque = 10;
     int defesa = 5;
+
+    //define interação do objeto  inimigo com o  jogador
 
     int atacarPlayer(Player &player)
     {

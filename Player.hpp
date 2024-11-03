@@ -12,6 +12,8 @@ using namespace std;
 
 class Player
 {
+    //classe  que representa o jogador
+
 public:
 
     
@@ -29,6 +31,7 @@ public:
 
     void sobeNivel()
     {
+        //Sistema para que o usuario escolha o atributo que sera melhorado
         if (xp >= 100)
         {
 
@@ -62,6 +65,7 @@ public:
     }
 
     void adicionarItem(const string &item)
+    //adiciona itens a mochila do jogador
     {
         for (int i = 0; i < 5; i++)
         {
@@ -85,6 +89,7 @@ public:
         cout << "equipamento cheio! Nao é possivel adicionar mais itens." << endl;
     }
     void adicionarEquipamento(const string &item)
+    //adiciona itens a equipamento do jogador
     {
         for (int i = 0; i < 5; i++)
         {
@@ -99,6 +104,7 @@ public:
     }
 
     void mostraEquipamento(){
+        //mostra equipamentos do jogador
         cout << "equipamentos: " << endl;
         for (int i = 0; i < 5; i++)
         {
@@ -107,6 +113,7 @@ public:
     }
 
     void usarItem()
+    //usa itens que afetam o jogador
     {
         cout << "Itens na mochila: " << endl;
         for (int i = 0; i < 5; i++)
@@ -124,6 +131,7 @@ public:
 
         if (escolha > 0 && escolha <= 5 && !mochila[escolha - 1].empty())
         {
+            //Codigo para determinar efeito do item
             string itemUsado = mochila[escolha - 1];
             cout << "Usando: " << itemUsado << endl;
             if (itemUsado == "Pocao de cura")

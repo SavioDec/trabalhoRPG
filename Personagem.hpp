@@ -15,6 +15,7 @@ using namespace std;
 #define PERSONAGEM_HPP
 
 struct Classes
+//cria os objetos das classes do personagem
 {
     int vida = 100;
     int vidaMax = 100;
@@ -25,6 +26,8 @@ struct Classes
 };
 
 void PausaJogo(){
+    // pausa o jogo
+
     #ifdef _WIN32
             system("pause");
     #else
@@ -33,6 +36,7 @@ void PausaJogo(){
     #endif
 }
 void limpaTela() {
+    // limpa o prompt
     #ifdef _WIN32
         system("cls");
     #else

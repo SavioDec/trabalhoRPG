@@ -9,6 +9,8 @@ using namespace std;
 
 class Bau
 {
+        //gera um numero aleatorio e entrega ao jogador um item com numero correspondente
+
 public:
     string nome;
     int flag = 0;
@@ -62,6 +64,7 @@ public:
 
     void mostrarItem(Player &player)
     {
+        //mostra item
         if(flag == 1){
             cout << "Voce encontrou um(a) " << nome << "!" << endl;
             cout << "Novo dano: " << player.ataque << endl;

@@ -18,6 +18,7 @@ void conjuraMagia(Player &player, Inimigo &inimigo)
     cin >> opcao;
 
     if (opcao == 1)
+    //Sistema de Magias "Bola de Fogo"
     {
         cout << "dado rolou: " << dado << endl;
         if (player.mana > 9)
@@ -52,6 +53,7 @@ void conjuraMagia(Player &player, Inimigo &inimigo)
         }
     }
     if (opcao == 2)
+    //Sistema de Magias "Cura"
     {
         if (player.mana > 4)
         {
@@ -85,6 +87,7 @@ void conjuraMagia(Player &player, Inimigo &inimigo)
         }
     }
     if (opcao == 3)
+    //Sistema de Magias "lanca de raio"
     {
         cout << "dado rolou: " << dado << endl;
         if (player.mana > 34)
@@ -126,6 +129,7 @@ void conjuraMagia(Player &player, Inimigo &inimigo)
 
 int main()
 {
+    // variaveis para funcionamente
     Player player;
     Inimigo inimigo;
     unsigned seed = time(0);
@@ -141,6 +145,7 @@ int main()
 
     do
     {
+        //Gerador de vida do inimigo
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         int dado = rand() % 100;
         if (inimigo.vida < 1)
@@ -149,6 +154,7 @@ int main()
             inimigoAleatorio(player, inimigo);
             player.xp += 50;
         }
+        //Sistema de Nivel do jogador
         player.sobeNivel();
         
         cout << "qual caminho deseja escolher? \n";
@@ -161,6 +167,7 @@ int main()
         if(opcao == 5){
             return 0;
         }
+        //Gerador de Encontros
         dado = rand() % 100;
         if (dado < 70)
         {
@@ -170,8 +177,7 @@ int main()
 
             while (inimigo.vida > 0)
             {
-                cout << "cenarios: " << cenarios << endl;
-                cout << "flag: " << flag << endl;
+                // Sistema de combate
                 cout << "Vida do inimigo: " << inimigo.vida << endl;
                 cout << "Defesa do inimigo: " << inimigo.defesa << endl << endl;
                 cout << "Vida do jogador: " << player.vida << endl;
@@ -185,6 +191,7 @@ int main()
 
                 switch (escolha)
                 {
+                 // Sistema de Combate
                 case 1:
                     atacarInimigo(inimigo, player);
                     if (inimigo.vida > 0) inimigo.atacarPlayer(player);
@@ -199,6 +206,7 @@ int main()
                 case 4:
                     player.mostraEquipamento();
                     break;
+                    // Codigos de teste
                 case 5:
                     return 0;
                     break;
@@ -219,6 +227,8 @@ int main()
                 }
                 if (player.vida < 1)
                 {
+                    //mensagem apos a morte
+
                     limpaTela();
                     cout << "Voce perdeu!!" << endl << endl;
                     PausaJogo();
@@ -237,7 +247,7 @@ int main()
             flag = 1;
             limpaTela();
             cout << "Entrando na Fortaleza Abandonada" << endl;
-            cout <<"Ao entrar dentro da antiga fortaleza, voce observa que tudo está em ruinas.\nVocê sente o ar frio enquanto explora o salao principal, onde o silencio é interrompido apenas pelos ecos dos seus passos. Algo, ou alguem, parece estar escondido nas sombras." << endl;
+            cout <<"Ao entrar dentro da antiga fortaleza, voce observa que tudo está em ruinas.\nVoce sente o ar frio enquanto explora o salao principal, onde o silencio e interrompido apenas pelos ecos dos seus passos. Algo, ou alguem, parece estar escondido nas sombras." << endl;
             PausaJogo();
         }
         if(cenarios > 3 && flag == 1){
@@ -245,7 +255,7 @@ int main()
             flag = 2;
             limpaTela();
             cout << "Entrando na Caverna dos Goblins" << endl;
-            cout <<"Voce entra na caverna onde ouve tambores a frente e uma quantidade enorma de sombras se movendo.\nA decisao agora e sua: fugir ou enfrenta-los diretamente." << endl;
+            cout <<"Voce entra na caverna onde ouve tambores a frente e uma quantidade enorme de sombras se movendo.\nA decisao agora e sua: fugir ou enfrenta-los diretamente." << endl;
             PausaJogo();
         }
         if(cenarios > 7 && flag == 2){
@@ -253,12 +263,11 @@ int main()
             flag = 3;
             limpaTela();
             cout << "Entrando na Vila Abandonada" << endl;
-            cout << "A pequena vila abandonada esta mergulhada em um silencio absoluto; um calafrio percorre sua espinha, e você percebe que não esta sozinho." << endl;
+            cout << "A pequena vila abandonada esta mergulhada em um silencio absoluto; um calafrio percorre sua espinha, e voce percebe que nao esta sozinho." << endl;
             PausaJogo();
         }
         if(cenarios > 15 && flag == 3){
             //finalizacao do jogo
-            flag == 4;
             cout << "Entrando em Arvendral" << endl;
             cout << "Apos tantas provacoes, seu caminho chega ao fim diante dos portoes de Arvendral.\n A cidade acolhe voce em silencio, como se reconhecesse o peso de cada batalha travada.\n Em seus muros, voce encontra não so o descanso merecido, mas o encerramento de uma jornada que agora faz parte das lendas." << endl;
             PausaJogo();
