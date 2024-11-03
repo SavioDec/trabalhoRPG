@@ -142,6 +142,7 @@ int main()
 
     player.adicionarItem("Pocao de cura");
     player.adicionarItem("Pocao de mana");
+    PausaJogo();
 
     do
     {
