@@ -30,9 +30,9 @@ Classes personagens()
     cout << "Escolha sua classe: " << endl;
     cout << "1- Mago (Poder Magico: 35 ; Mana: 120 ; vida: 100 ; defesa: 5 ; ataque: 10; )" << endl;
     cout << "2- Guerreiro (Poder Magico: 10 ; Mana: 50 ; vida: 100 ; defesa: 15 ; ataque: 20 )" << endl;
-    cout << "3- Ladino (Poder Magico: 10 ; Mana: 50 ; vida: 100 ;defesa: 5 ; ataque: 30 )" << endl;
+    cout << "3- Ladino (Poder Magico: 10 ; Mana: 50 ; vida: 100 ;defesa: 7 ; ataque: 30 )" << endl;
     cout << "4- Paladino (Poder Magico: 25 ; Mana: 70 ; vida : 100 ; defesa: 10 ; ataque: 15 )" << endl;
-    cout << "5- Barbaro (Poder Magico: 0 ; Mana: 0 ; vida: 150 ; defesa: 20 ; ataque: 45 )" << endl;
+    cout << "5- Barbaro (Poder Magico: 0 ; Mana: 0 ; vida: 150 ; defesa: 5 ; ataque: 45 )" << endl;
     cin >> person;
     
     
@@ -66,7 +66,7 @@ Classes personagens()
         classe.vidaMax = 100;
         classe.magia = 10;
         classe.manaMaxima = 70;
-        classe.defesa = 5;
+        classe.defesa = 7;
         classe.ataque = 30;
         return classe;
         break;
@@ -88,7 +88,7 @@ Classes personagens()
         classe.vidaMax = 150;
         classe.magia = 0;
         classe.manaMaxima = 0;
-        classe.defesa = 20;
+        classe.defesa = 5;
         classe.ataque = 45;
         return classe;
         break;
