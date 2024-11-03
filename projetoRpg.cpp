@@ -131,14 +131,14 @@ int main()
     unsigned seed = time(0);
     srand(seed);
     int opcao;
-    int cenarios = 10;
+    int cenarios = 0;
     Bau meuBau;
     int escolha;
-    int flag = 1;
+    int flag = 0;
 
     player.adicionarItem("Pocao de cura");
     player.adicionarItem("Pocao de mana");
-    
+
     do
     {
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -170,7 +170,8 @@ int main()
 
             while (inimigo.vida > 0)
             {
-
+                cout << "cenarios: " << cenarios << endl;
+                cout << "flag: " << flag << endl;
                 cout << "Vida do inimigo: " << inimigo.vida << endl;
                 cout << "Defesa do inimigo: " << inimigo.defesa << endl << endl;
                 cout << "Vida do jogador: " << player.vida << endl;
@@ -231,28 +232,38 @@ int main()
         }else{
             cout << "Nao achou nada" << endl;
         }
-        if(cenarios > 10 && flag == 1 ){
+        if(cenarios > 1 && flag == 0 ){
             //segundo cenario
-            flag = 2;
+            flag = 1;
             limpaTela();
             cout << "Entrando na Fortaleza Abandonada" << endl;
             cout <<"Ao entrar dentro da antiga fortaleza, voce observa que tudo está em ruinas.\nVocê sente o ar frio enquanto explora o salao principal, onde o silencio é interrompido apenas pelos ecos dos seus passos. Algo, ou alguem, parece estar escondido nas sombras." << endl;
             PausaJogo();
-            
-        }else if(cenarios > 20 && flag == 3){
+        }
+        if(cenarios > 3 && flag == 1){
             //terceiro cenario
-            flag = 4;
+            flag = 2;
             limpaTela();
             cout << "Entrando na Caverna dos Goblins" << endl;
             cout <<"Voce entra na caverna onde ouve tambores a frente e uma quantidade enorma de sombras se movendo.\nA decisao agora e sua: fugir ou enfrenta-los diretamente." << endl;
             PausaJogo();
-        }else if(cenarios > 30 && flag == 4){
+        }
+        if(cenarios > 7 && flag == 2){
             //quarto cenario
-            flag = 5;
+            flag = 3;
             limpaTela();
             cout << "Entrando na Vila Abandonada" << endl;
             cout << "A pequena vila abandonada esta mergulhada em um silencio absoluto; um calafrio percorre sua espinha, e você percebe que não esta sozinho." << endl;
             PausaJogo();
+        }
+        if(cenarios > 15 && flag == 3){
+            //finalizacao do jogo
+            flag == 4;
+            cout << "Entrando em Arvendral" << endl;
+            cout << "Apos tantas provacoes, seu caminho chega ao fim diante dos portoes de Arvendral.\n A cidade acolhe voce em silencio, como se reconhecesse o peso de cada batalha travada.\n Em seus muros, voce encontra não so o descanso merecido, mas o encerramento de uma jornada que agora faz parte das lendas." << endl;
+            PausaJogo();
+            opcao = 5;
+            return 0;
         }
         
     } while (opcao != 5);
