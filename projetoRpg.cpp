@@ -12,13 +12,7 @@
 using namespace std;
 
 
-void limpaTela() {
-        #ifdef _WIN32
-            system("cls");
-        #else
-            system("clear");
-        #endif
-}
+
 
 
 void conjuraMagia(Player &player, Inimigo &inimigo)
@@ -136,39 +130,7 @@ void conjuraMagia(Player &player, Inimigo &inimigo)
     }
 }
 
-void CadastrarPlayer(){
-    limpaTela();
-    string userName;
-    string data;
-    string linha;
 
-    fstream arquivo ;
-    arquivo.open("Personagem.txt", ios::in);
-     
-    if(arquivo){
-        while(getline(arquivo, linha)){  
-            cout<< linha << endl;
-        }
-        arquivo.close();
-    }else{
-    
-        arquivo.open("Personagem.txt", ios::out);
-
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout<< "Digite o nome do seu Personagem (Escolha um nome bem criativo): ";
-        getline(cin, userName);
-
-        cout<<"Data de hoje(DD/MM/AAAA) : ";
-        getline(cin, data);
-
-        arquivo<<"Nome do personagem : "<< userName << endl << "Data de Login : "<<data;
-        cout<<"Personagem cadastrado com sucesso !!"<<endl;
-        arquivo.close();
-       
-    }
-    cout<<"Boa aventura !"<<endl<<endl;
-
-}
 
 
 
@@ -179,16 +141,12 @@ int main()
     unsigned seed = time(0);
     srand(seed);
     int opcao;
-    int vitoria;
+    int cenarios = 0;
     Bau meuBau;
     int escolha;
-    string userName;
-    string data;
 
-
-
-    CadastrarPlayer();
-
+    
+    
     do
     {
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -200,6 +158,13 @@ int main()
             player.xp += 50;
         }
         player.sobeNivel();
+        if(cenarios < 10){
+            // Cenario inicial
+            limpaTela();
+            cout << "Voce entrou na Floresta Enfeiticada" << endl;
+            cout <<"Voce caminha por uma trilha sinuosa, cercado por arvores altas e uma nevoa densa. A sensacao de estar sendo observado e constante, e algo se move nas sombras, mas voce nao consegue ver o que e." << endl;
+            PausaJogo();
+        }
         cout << "qual caminho deseja escolher? \n";
         cout << "1 - Norte \n";
         cout << "2 - Sul \n";
@@ -213,7 +178,7 @@ int main()
         dado = rand() % 100;
         if (dado < 70)
         {
-            vitoria++;
+            cenarios++;
             limpaTela();
             cout << "Um inimigo apareceu!!!!!!" << endl<<endl;; 
 
@@ -267,9 +232,9 @@ int main()
                 }
                 if (player.vida < 1)
                 {
-                    system("cls; clear");
+                    limpaTela();
                     cout << "Voce perdeu!!" << endl << endl;
-                    system("pause");
+                    PausaJogo();
                     return 0;
                 }
             }
@@ -280,12 +245,27 @@ int main()
         }else{
             cout << "Nao achou nada" << endl;
         }
-        if(vitoria > 49){
+        
+        if(cenarios > 10){
+            //segundo cenario
             limpaTela();
-            cout << "Voce ganhou!!" << endl << endl;
-            system("pause");
-            return 0;
-    }
+            cout << "Fortaleza Abandonada" << endl;
+            cout <<"Dentro da antiga fortaleza, tudo está em ruinas. Você sente o ar frio enquanto explora o salao principal, onde o silencio é interrompido apenas pelos ecos dos seus passos. Algo, ou alguem, parece estar escondido nas sombras." << endl;
+            PausaJogo();
+            
+        }else if(cenarios > 20){
+            //terceiro cenario
+            limpaTela();
+            cout << "Caverna dos Goblins" << endl;
+            cout <<"Voce entra na caverna ouve tambores a frente, e uma quantidade enorma de sombras se movendo. A decisao agora e sua: fugir ou enfrenta-los diretamente." << endl;
+            PausaJogo();
+        }else if(cenarios > 30){
+            //quarto cenario
+            limpaTela();
+            cout << "A Vila Ameacada" << endl;
+            cout << "A pequena vila esta em alerta, temendo um ataque iminente. Com poucas defesas, voce deve ajudar os moradores a se prepararem antes que os saqueadores cheguem ao anoitecer." << endl;
+            PausaJogo();
+        }
     } while (opcao != 5);
 
     
