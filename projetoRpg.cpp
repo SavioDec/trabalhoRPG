@@ -248,7 +248,7 @@ int main()
             flag = 1;
             limpaTela();
             cout << "Entrando na Fortaleza Abandonada" << endl;
-            cout <<"Ao entrar na antiga fortaleza, voce observa que tudo está em ruinas.\nVoce sente o ar frio enquanto explora o salao principal, onde o silencio e interrompido apenas pelos ecos dos seus passos. Algo, ou alguem, parece estar escondido nas sombras." << endl;
+            cout <<"Ao entrar na antiga fortaleza, voce observa que tudo esta em ruinas.\nVoce sente o ar frio enquanto explora o salao principal, onde o silencio e interrompido apenas pelos ecos dos seus passos. Algo, ou alguem, parece estar escondido nas sombras." << endl;
             PausaJogo();
         }
         if(cenarios > 3 && flag == 1){
@@ -270,7 +270,7 @@ int main()
         if(cenarios > 15 && flag == 3){
             //finalizacao do jogo
             cout << "Entrando na cidade de Arvendral" << endl;
-            cout << "Apos tantas provacoes, seu caminho chega ao fim diante dos portoes de Arvendral.\n A cidade acolhe voce em silencio, como se reconhecesse o peso de cada batalha travada.\n Em seus muros, voce encontra não so o descanso merecido, mas o encerramento de uma jornada que agora faz parte das lendas." << endl;
+            cout << "Apos tantas provacoes, seu caminho chega ao fim diante dos portoes de Arvendral.\n A cidade acolhe voce em silencio, como se reconhecesse o peso de cada batalha travada.\n Em seus muros, voce encontra nao so o descanso merecido, mas o encerramento de uma jornada que agora faz parte das lendas." << endl;
             PausaJogo();
             opcao = 5;
             return 0;

@@ -47,21 +47,21 @@ void limpaTela() {
 void HistoriaPerson(int &person){
     //historia dos personagens
     
-    if(person == 1) {
-        cout << endl <<"Elenion nasceu em uma familia de estudiosos e se dedicou a magia desde jovem. Em sua torre isolada, ele buscava desvendar os segredos antigos, acumulando vasto conhecimento.\nEm uma noite de estudo, Elenion invocou acidentalmente uma entidade sombria que comecou a distorcer a realidade ao seu redor, ameaçando destrui-lo." << endl;
+    if(person == 1) { 
+        cout << endl <<"Elenion nasceu em uma familia de estudiosos e se dedicou a magia desde jovem. Em sua torre isolada, ele buscava desvendar os segredos antigos, acumulando vasto conhecimento.\nEm uma noite de estudo, Elenion invocou acidentalmente uma entidade sombria que comecou a distorcer a realidade ao seu redor, ameacando destrui-lo." << endl;
     }
     if(person == 2) {
-        cout << endl << "Sir Aldric cresceu em uma vila humilde, treinado por seu pai, um cavaleiro que servia o rei. Ele aprendeu desde cedo o valor da honra e jurou proteger os fracos, sempre fiel ao dever.\nEm uma missão para recuperar um artefato sagrado, Aldric e caiu em uma emboscada\nSozinho e ferido, ele se escondeu em uma caverna, onde pediu forças aos deuses." << endl;
+        cout << endl << "Sir Aldric cresceu em uma vila humilde, treinado por seu pai, um cavaleiro que servia o rei. Ele aprendeu desde cedo o valor da honra e jurou proteger os fracos, sempre fiel ao dever.\nEm uma missao para recuperar um artefato sagrado, Aldric e caiu em uma emboscada\nSozinho e ferido, ele se escondeu em uma caverna, onde pediu forcas aos deuses." << endl;
     }
     if(person == 3) {
         
         cout << endl << "Kael cresceu nas ruas caoticas de Eldorath, sobrevivendo como ladrao. Conhecido como 'Mao-leve' por sua destreza, ele se tornou uma lenda local, especialista em furtos e esquemas\nKael foi contratado para roubar um artefato magico, mas caiu em uma armadilha que o transportou para uma dimensao ilusoria.\nPreso, ele precisava escapar..." << endl;
     }
     if(person == 4) {
-        cout << endl <<"Thalia foi criada em um templo dedicado a deusa da justica. Ela jurou proteger os inocentes e lutar contra o mal, guiada pela fe e pela espada.\nDurante uma missão, Thalia enfrentou um poderoso demonio que dominava um vilarejo.\nFerida e com sua espada quebrada, ela se viu enfraquecida, mas não derrotada." << endl;
+        cout << endl <<"Thalia foi criada em um templo dedicado a deusa da justica. Ela jurou proteger os inocentes e lutar contra o mal, guiada pela fe e pela espada.\nDurante uma missao, Thalia enfrentou um poderoso demonio que dominava um vilarejo.\nFerida e com sua espada quebrada, ela se viu enfraquecida, mas nao derrotada." << endl;
     }
     if(person == 5) {
-        cout << endl << "Gromak nasceu nas gelidas planicies de Tharok, onde a força era a unica lei. Ele se tornou lider de sua tribo apos a morte de seu pai, conhecido por sua ferocidade em batalha.\nDurante uma cacada, Gromak e seus guerreiros enfrentaram uma criatura colossal, o 'Devorador de Montanhas'. Quase todos foram mortos, mas Gromak não recuou.\nAo ataca-lo novamente o 'Devorador de Montanhas' o pega e arremessa Gromak para muito longe." << endl;
+        cout << endl << "Gromak nasceu nas gelidas planicies de Tharok, onde a força era a unica lei. Ele se tornou lider de sua tribo apos a morte de seu pai, conhecido por sua ferocidade em batalha.\nDurante uma cacada, Gromak e seus guerreiros enfrentaram uma criatura colossal, o 'Devorador de Montanhas'. Quase todos foram mortos, mas Gromak nao recuou.\nAo ataca-lo novamente o 'Devorador de Montanhas' o pega e arremessa Gromak para muito longe." << endl;
     }
 
     // Cenario inicial
