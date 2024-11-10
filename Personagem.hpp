@@ -66,7 +66,7 @@ void HistoriaPerson(int &person){
 
     // Cenario inicial
     cout << endl << "Voce entrou na Floresta Enfeiticada" << endl;
-    cout <<"Voce caminha por uma trilha sinuosa, cercado por arvores altas e uma nevoa densa. A sensacao de estar sendo observado e constante, e algo se move nas sombras, mas voce nao consegue ver o que e." << endl;
+    cout <<"Voce caminha por uma trilha sinuosa, cercado por arvores altas e uma nevoa densa. A sensacao de estar sendo observado e constante, e algo se move nas sombras, mas voce nao consegue ver o que eh." << endl;
     cout << "Ao verem sua situacao os deuses lhe favorecem concedendo-o duas pocoes" << endl;
     PausaJogo();
 };
