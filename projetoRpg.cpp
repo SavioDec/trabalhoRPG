@@ -236,7 +236,7 @@ int main()
                     return 0;
                 }
             }
-        }else if(dado > 30){
+        }else if(dado < 90){
             //colocar o bau aqui
             meuBau.bau(player);
             meuBau.mostrarItem(player);
@@ -270,7 +270,7 @@ int main()
         if(cenarios > 15 && flag == 3){
             //finalizacao do jogo
             cout << "Entrando na cidade de Arvendral" << endl;
-            cout << "Apos tantas provacoes, seu caminho chega ao fim diante dos portoes de Arvendral.\n A cidade acolhe voce em silencio, como se reconhecesse o peso de cada batalha travada.\n Em seus muros, voce encontra nao so o descanso merecido, mas o encerramento de uma jornada que agora faz parte das lendas." << endl;
+            cout << "Apos tantas provacoes, seu caminho chega ao fim diante dos portoes de Arvendral.\n A cidade acolhe voce em silencio, como se reconhecesse o peso de cada batalha travada.\n Em seus muros, voce encontra nao so o descanso merecido, mas o encerramento de uma jornada que agora faz parte das lendas de Arvendral." << endl;
             PausaJogo();
             opcao = 5;
             return 0;
