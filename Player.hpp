@@ -77,16 +77,6 @@ public:
             }
         }
         cout << "Mochila cheia! Nao é possivel adicionar mais itens." << endl;
-        for (int i = 0; i < 5; i++)
-        {
-            if (equipamentos[i].empty())
-            {
-                equipamentos[i] = item;
-                cout << "Item '" << item << "' adicionado nos equipamentos." << endl;
-                return;
-            }
-        }
-        cout << "equipamento cheio! Nao é possivel adicionar mais itens." << endl;
     }
     void adicionarEquipamento(const string &item)
     //adiciona itens a equipamento do jogador
